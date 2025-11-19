@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Rekrutacja_FM"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "4aaf34c6-1f62-45de-8633-7450155dd424"
+  }
+}

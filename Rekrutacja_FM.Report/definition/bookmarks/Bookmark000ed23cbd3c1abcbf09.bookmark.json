@@ -1,0 +1,65 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Closed Dark theme",
+  "name": "Bookmark000ed23cbd3c1abcbf09",
+  "options": {
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "cdfb23a75cf2a6aed226",
+      "63a9f41a5767d2eab075",
+      "3efb2590a7533ba25bcc",
+      "e31011cba8acbb87573c",
+      "51827841b101207f47aa",
+      "6f76cb920402f7e0a534",
+      "a96e8ba3f002d27cace5",
+      "03c4ccd6d2faf99e4fea",
+      "cb22062f4bff2413e999",
+      "361d1102b4b99c2d3c88",
+      "f59886eff29772350fbd",
+      "ec91c8e54bfd79a7512f",
+      "7b5acd83726eaad4c85c",
+      "a1a4ec53adddff8425c6",
+      "07de4b302fc05d999a4d",
+      "f2698a2225aa363b2c22",
+      "95dd836bac6ab2daf4f0",
+      "6b7117c0423c237e7f09",
+      "818b2ce7ff3cb685504b",
+      "a7ed1200f264bd1aa474",
+      "d5bcd2c688d529233f07",
+      "20034975b6d9cf0aff85",
+      "07d55b7373935fc02c89",
+      "775984fa7886fdbb521f",
+      "c2d5ea48fda1d4225ca9",
+      "dc4f04b295e1869d2fa8",
+      "5c8351d89c650b661dc6",
+      "d0c807b8bf8b3899ead2",
+      "0b6146fdc78aefaa18a1"
+    ]
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "ReportSectiona4eb5d02baceb94cf687",
+    "sections": {
+      "ReportSectiona4eb5d02baceb94cf687": {
+        "visualContainers": {}
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "true"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,15 @@
+relationship ae8bd557-6b80-45ea-bcb4-d2d3a3029b17
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Data.new'.Date
+	toColumn: LocalDateTable_ef1c661a-52d3-4cf2-a654-469498f31368.Date
+
+relationship d3a41df6-e545-41a7-a1aa-e0b7a9a36428
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Data.new'.'Date - Copy'
+	toColumn: LocalDateTable_53c1af51-07d7-49d9-9e7a-b0165ff3f662.Date
+
+relationship a8a3cb9f-7030-4a70-b02a-ee0c350b5c56
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Data.new'.Date_my
+	toColumn: LocalDateTable_320e1b07-1262-48cc-9c3c-522060c31f52.Date
+

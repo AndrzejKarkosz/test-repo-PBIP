@@ -1,0 +1,74 @@
+table Employees
+	lineageTag: c98a312f-ac42-4b15-a5bf-0dc144df49e2
+
+	measure 'Target Value' =
+			CALCULATE(SUM(Employees[Target])
+			)
+		formatString: 0%;-0%;0%
+		lineageTag: eea1acf5-79f4-4bd4-8688-cada6245f0b2
+
+	measure 'Target Value missing' = ```
+			1 - [Target Value]
+			
+			```
+		lineageTag: 8d3fc87f-4d7a-4d2f-a60b-31abfc82a550
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Image URL '
+		dataType: string
+		lineageTag: 00cf2a80-1f94-4b9d-a256-29783dc33498
+		summarizeBy: none
+		sourceColumn: "Image URL "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Position Name'
+		dataType: string
+		lineageTag: 6330d1e8-8604-47d7-87fe-e5430a7ffd9d
+		summarizeBy: none
+		sourceColumn: Position Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: string
+		lineageTag: 8c38c415-f3ab-4c95-8a0b-b92889d58809
+		summarizeBy: none
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Target
+		dataType: double
+		lineageTag: bf797839-10af-4bbf-8376-44993dcd5389
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Employee
+		dataType: string
+		lineageTag: 700696fb-c37d-4b8e-a938-6c224a6024e8
+		summarizeBy: none
+		sourceColumn: Employee
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Employees = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\andrz\Desktop\Testowe Dashboardy\Employees.xlsx"), null, true),
+				    Arkusz1_Sheet = Source{[Item="Arkusz1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Arkusz1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Target", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

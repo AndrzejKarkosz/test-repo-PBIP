@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY22SU08",
+      "reportVersionAtImport": {
+        "visual": "1.8.71",
+        "report": "2.0.71",
+        "page": "1.3.71"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "simpleImageEBC4593F96F1425FB3D84C5BF02B5075"
+  ],
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY22SU08",
+          "path": "BaseThemes/CY22SU08.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "bar-chart2688334473668399.png",
+          "path": "bar-chart2688334473668399.png",
+          "type": "Image"
+        },
+        {
+          "name": "cursor6716606010955752.png",
+          "path": "cursor6716606010955752.png",
+          "type": "Image"
+        },
+        {
+          "name": "return-on-investment769546737229148.png",
+          "path": "return-on-investment769546737229148.png",
+          "type": "Image"
+        },
+        {
+          "name": "review3407843107369344.png",
+          "path": "review3407843107369344.png",
+          "type": "Image"
+        },
+        {
+          "name": "adwords8968733891458474.png",
+          "path": "adwords8968733891458474.png",
+          "type": "Image"
+        },
+        {
+          "name": "social053505142867772415.png",
+          "path": "social053505142867772415.png",
+          "type": "Image"
+        },
+        {
+          "name": "meta97293594376529.png",
+          "path": "meta97293594376529.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true,
+    "filterPaneHiddenInEditMode": true
+  }
+}

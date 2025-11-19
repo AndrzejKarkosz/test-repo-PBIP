@@ -1,0 +1,27 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: pl-PL
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Employees","Data.new"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation __TEdtr = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_60309d6b-8bd0-44ae-9e73-a32e0c358cbe
+ref table Employees
+ref table 'Data.new'
+ref table LocalDateTable_ef1c661a-52d3-4cf2-a654-469498f31368
+ref table LocalDateTable_53c1af51-07d7-49d9-9e7a-b0165ff3f662
+ref table 'Dynamic Measures'
+ref table LocalDateTable_320e1b07-1262-48cc-9c3c-522060c31f52
+
+ref cultureInfo en-US
+

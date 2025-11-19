@@ -1,0 +1,262 @@
+table 'Data.new'
+	lineageTag: c7c825c7-97e7-4186-85fd-6766d541fe24
+
+	measure 'Total Clicks' = CALCULATE(SUM('Data.new'[Clicks]))
+		formatString: #,0
+		lineageTag: 1f2fcd94-3323-4d70-8180-379c77aef6f4
+
+	measure 'Total Impressions' = CALCULATE(sum('Data.new'[Impressions]))
+		formatString: #,0
+		lineageTag: 0dd57ec1-4a8f-4dc4-93f5-9c9f591cc8f1
+
+	measure 'Total Investment' = CALCULATE(sum('Data.new'[Investement]))
+		formatString: #,0.00
+		lineageTag: 151f80ee-ba11-492d-852f-32416dd907b1
+
+	measure CTR = CALCULATE(DIVIDE([Total Clicks], [Total Impressions]))
+		lineageTag: 6c85fb7e-4021-409f-902e-47a606b8766a
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CPV = DIVIDE([Total Investment], [Total Impressions])
+		lineageTag: b2392e75-1b64-442e-9c15-0fe82f409152
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Amazon investment' = DIVIDE((Calculate([Total Investment], 'Data.new'[Platform] = "Amazon")),[Total Investment])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 6a773860-626f-4307-8c0f-57ef21d2a39b
+
+	measure 'Amazon Investment to ''100''' = 1 - [Amazon investment]
+		lineageTag: 69f37334-0c0c-4049-90a0-cdd0682963b0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Meta investment' = DIVIDE((Calculate([Total Investment], 'Data.new'[Platform] = "Meta")),[Total Investment])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7887aad9-ed15-4b30-989d-5872b7c60c7f
+
+	measure 'Meta Investment to ''100''' = 1 - [Meta investment]
+		lineageTag: 33d5e1a7-4c8f-47bf-b29b-4d650978c0f4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Google investment' = DIVIDE((Calculate([Total Investment], 'Data.new'[Platform] = "Google Ads")),[Total Investment])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 95c7cd1b-6b6f-4b91-9979-aae6484014d1
+
+	measure 'google investmenta to ''100''' = 1 - [Google investment]
+		lineageTag: 524d90b3-ada7-4519-8add-ecdb6c962ebb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CPM = CALCULATE(DIVIDE([Total Investment], 1000))
+		lineageTag: aa886900-3463-451b-b7d1-a777e3aa78da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Dynamic Value'
+		lineageTag: 87ec684b-0400-42c8-92c5-1dc5f4b5551e
+
+	measure 'Impressions LY' =
+			CALCULATE(
+			    [Total Impressions],
+			    SAMEPERIODLASTYEAR('Data.new'[Date_my].[Date])
+			)
+		formatString: 0
+		lineageTag: 869f2f32-05b4-4479-9808-796b6ca78a50
+
+	measure 'Impressions IYA' = IF(ISBLANK(IF(ISBLANK([Impressions LY]),BLANK(),(DIVIDE([Total Impressions],[Impressions LY],1)-1))),"N/D",IF(ISBLANK([Impressions LY]),BLANK(),(DIVIDE([Total Impressions],[Impressions LY],1)-1)))
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: a7bafa70-89c5-4763-aefc-ed222ed0b1a9
+
+	measure Measure
+		lineageTag: e8430b9d-9204-4ffa-87f6-a2443329fb95
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Concat Impressions IYA' = IF([Impressions IYA] > 0, CONCATENATE("+", ROUND(([Impressions IYA]*100),2)), CONCATENATE("- ", ROUND(([Impressions IYA]*100),2)))
+		lineageTag: 02bc64e0-78bc-464c-9a85-debe006e9b35
+
+	measure 'Clicks LY' =
+			CALCULATE(
+			    [Total Clicks],
+			    SAMEPERIODLASTYEAR('Data.new'[Date_my].[Date])
+			)
+		formatString: 0
+		lineageTag: 2fec13d6-50b6-4e64-846d-df9f8c05c7e0
+
+	measure 'Investment LY' =
+			CALCULATE(
+			    [Total Investment],
+			    SAMEPERIODLASTYEAR('Data.new'[Date_my].[Date])
+			)
+		lineageTag: c4bde8ef-e28b-4f7b-b618-8c16a03489ee
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Clicks IYA' = IF(ISBLANK(IF(ISBLANK([Clicks LY]),BLANK(),(DIVIDE([Total Clicks],[Clicks LY],1)-1))),"N/D",IF(ISBLANK([Clicks LY]),BLANK(),(DIVIDE([Total Clicks],[Clicks LY],1)-1)))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: 8afc7617-5f4d-417d-94c1-c3fe8dc8c88a
+
+	measure 'Investment IYA' = IF(ISBLANK(IF(ISBLANK([Investment LY]),BLANK(),(DIVIDE([Total Investment],[Investment LY],1)-1))),"N/D",IF(ISBLANK([Investment LY]),BLANK(),(DIVIDE([Total Investment],[Investment LY],1)-1)))
+		formatString: #,0.0%;-#,0.0%;#,0.0%
+		lineageTag: ef90bfc5-8e31-4e29-919e-3d6abb84d7e5
+
+	measure '+ value Investment' = IF([Investment IYA]> 0, "+", "-")
+		lineageTag: 39bd55dd-fc1d-4f2d-8245-4d2b06336bff
+
+	measure '+ value Impressions' = IF([Impressions IYA]> 0, "+", "-")
+		lineageTag: dd56eedb-d65c-4cd2-8af6-81ca9f41e8d2
+
+	measure '+ value Clicks' = IF([Clicks IYA]> 0, "+", "-")
+		lineageTag: 80f67bf0-99ec-48ba-b72b-98b7e9ecc0fa
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 200b57f4-c96d-4879-9669-b3395b2cb292
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 81854cca-1129-4679-be5c-0a4b7ca4826a
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: d7fa7ca4-61a3-4b4d-9159-bcb888026e75
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Brand
+		dataType: string
+		lineageTag: 31090702-6d39-43ba-b7b9-629a7399c222
+		summarizeBy: none
+		sourceColumn: Brand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Investement
+		dataType: double
+		lineageTag: c67bcaca-ada0-46cb-ad21-404c65903e3f
+		summarizeBy: sum
+		sourceColumn: Investement
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Impressions
+		dataType: int64
+		formatString: 0
+		lineageTag: 1abfd59b-d410-4f69-95dd-ddfd74708da1
+		summarizeBy: sum
+		sourceColumn: Impressions
+
+		annotation SummarizationSetBy = Automatic
+
+	column Clicks
+		dataType: int64
+		formatString: 0
+		lineageTag: 028a1f4f-e0de-45f9-bec6-aa0d9daea5f5
+		summarizeBy: sum
+		sourceColumn: Clicks
+
+		annotation SummarizationSetBy = Automatic
+
+	column Platform
+		dataType: string
+		lineageTag: 03fcd9dc-7821-4bf0-ac6b-2dff41800fcd
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 410ff89a-6d43-4ae5-82ad-db624e234592
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 5d2b3650-7496-453a-aa26-b35720a0a6f1
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: ae8bd557-6b80-45ea-bcb4-d2d3a3029b17
+			defaultHierarchy: LocalDateTable_ef1c661a-52d3-4cf2-a654-469498f31368.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Date - Copy'
+		dataType: dateTime
+		formatString: mmmm yyyy
+		lineageTag: a6eb745a-9333-4e23-a0b8-c0cdf05e83ae
+		summarizeBy: none
+		sourceColumn: Date - Copy
+
+		variation Variation
+			isDefault
+			relationship: d3a41df6-e545-41a7-a1aa-e0b7a9a36428
+			defaultHierarchy: LocalDateTable_53c1af51-07d7-49d9-9e7a-b0165ff3f662.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Date_my
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c62ee1b5-f1f8-4ca7-9ce6-bd408be9a5a8
+		summarizeBy: none
+		sourceColumn: Date_my
+
+		variation Variation
+			isDefault
+			relationship: a8a3cb9f-7030-4a70-b02a-ee0c350b5c56
+			defaultHierarchy: LocalDateTable_320e1b07-1262-48cc-9c3c-522060c31f52.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Data.new' = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\andrz\Desktop\Zadanie Rekrutacyjne.xlsx"), null, true),
+				    Data_Sheet = Source{[Item="Data",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Data_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Year", Int64.Type}, {"Month", Int64.Type}, {"Country", type text}, {"Brand", type text}, {"Investement", type number}, {"Impressions", Int64.Type}, {"Clicks", Int64.Type}, {"Platform", type text}, {"ID", Int64.Type}, {"Date", type date}}),
+				    #"Duplicated Column" = Table.DuplicateColumn(#"Changed Type", "Date", "Date - Copy"),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Duplicated Column",{{"Date - Copy", type date}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type1", each true),
+				    #"Changed Type2" = Table.TransformColumnTypes(#"Filtered Rows",{{"Date_my", type date}})
+				in
+				    #"Changed Type2"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

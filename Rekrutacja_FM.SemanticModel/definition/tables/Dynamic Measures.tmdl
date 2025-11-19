@@ -1,0 +1,57 @@
+table 'Dynamic Measures'
+	lineageTag: 0b384f0d-ab08-4199-9d02-225af96cc1eb
+
+	calculationGroup
+
+		calculationItem Impressions = CALCULATE ( SELECTEDMEASURE () )
+
+		calculationItem Clicks = CALCULATE ( SELECTEDMEASURE () )
+
+		calculationItem Investment = CALCULATE ( SELECTEDMEASURE () )
+
+		calculationItem CTR = CALCULATE ( SELECTEDMEASURE () )
+
+		calculationItem CPV = CALCULATE ( SELECTEDMEASURE () )
+
+		calculationItem CPM = CALCULATE ( SELECTEDMEASURE () )
+
+	measure DynamicMeasure = ```
+			
+			Var SelectedMeasure = 
+			SELECTEDVALUE('Dynamic Measures'[Name], "Impressions")
+			Var DynamicMeasure=
+			SWITCH(
+			True(), 
+			SelectedMeasure = "Impressions", [Total Impressions],
+			SelectedMeasure = "Clicks", [Total Clicks],
+			SelectedMeasure = "Investment", [Total Investment],
+			SelectedMeasure = "CTR", [CTR],
+			SelectedMeasure = "CPV", [CPV],
+			SelectedMeasure = "CPM", [CPM],
+			
+			Blank()
+			)
+			
+			return DynamicMeasure
+			```
+		formatString: #,0
+		lineageTag: 876704fd-ff71-4b46-845d-ddeec3689220
+
+	column Name
+		dataType: string
+		lineageTag: 75116b24-7727-44ff-9ea0-c574012cd1c2
+		summarizeBy: none
+		sourceColumn: Name
+		sortByColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordinal
+		dataType: int64
+		isHidden
+		lineageTag: 37eb8d8d-7324-469e-b38e-c111d3049320
+		summarizeBy: sum
+		sourceColumn: Ordinal
+
+		annotation SummarizationSetBy = Automatic
+
